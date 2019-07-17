@@ -31,4 +31,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDAO.listAll();
 	}
 
+	public Employee findByIdEmployee(int id) {
+		System.out.println("Find By Id Employee in Employee Service");
+		return employeeDAO.findById(id);
+	}
+
+
+	public int deleteEmployee(int id) {
+		System.out.println("Delete Employee in Employee Service");
+		return employeeDAO.delete(id);
+	}
+
 }

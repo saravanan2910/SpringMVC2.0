@@ -30,7 +30,7 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/register")
-	public String registeremployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
+	public String registerEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
 		System.out.println(employee);
 		if (result.hasErrors()) {
 			return "register";
@@ -50,7 +50,7 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/login")
-	public String loginemployee(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String loginEmployee(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		Employee employee = new Employee();
@@ -76,31 +76,42 @@ public class EmployeeController {
 
 	}
 
-	@GetMapping("/update")
-	public String update() {
-		return "login";
+	@GetMapping("/delete")
+	public String delete() {
+		return "delete";
 	}
 
-	@PostMapping("/update")
-	public String updateemployee(HttpServletRequest request, HttpServletResponse response, Model model) {
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
-		Employee employee = new Employee();
-		employee.setName(name);
-		employee.setPassword(password);
+	@PostMapping("/delete")
+	public String deleteEmployee(@ModelAttribute("employee") Employee emp,Model model) {
 
-		employee = employeeService.loginEmployee(employee);
+		int id = emp.getId();
+
+		if (employeeService.deleteEmployee(id) == 1) {
+			return "success";
+
+		} else {
+			return "error";
+		}
+
+	}
+	
+	@GetMapping("/findbyid")
+	public String findByIdEmployee() {
+		return "delete";
+	}
+
+	@PostMapping("/findbyid")
+	public String findByIdEmployee(@ModelAttribute("employee") Employee emp, HttpServletRequest request, Model model) {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		emp.setId(id);
+
+		Employee employee = employeeService.findByIdEmployee(id);
 
 		if (employee != null) {
 
-			if (employee.getRole().equals("admin")) {
-				model.addAttribute("emplist", employeeService.listAllEmployees());
-				return "admin";
-
-			} else {
-				model.addAttribute("employee", employee);
-				return "employee";
-			}
+			model.addAttribute("employee", employee);
+			return "findById";
 
 		} else {
 			return "error";
