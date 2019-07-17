@@ -6,6 +6,39 @@
 <meta charset="UTF-8">
 <title>Admin Page</title>
 <style>
+/* Set a style for all buttons */
+button {
+text-align:center;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 0;
+  margin: 8px 20px;
+  border: none;
+  cursor: pointer;
+  width: 60%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.signupbtn {
+  width: 10%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 #employee {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -58,8 +91,11 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<br>
-	<br>
+	<br><br>
+	 <div class="clearfix">
+  		<a href="update"><button type="button" class="signupbtn">UPDATE</button></a>
+   		<a href="delete"><button type="button" class="signupbtn">DELETE</button></a>
+    </div>
 
 </body>
 </html>

@@ -30,6 +30,6 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/employee_db" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="Sapient123" />
 	</bean>
 </beans>

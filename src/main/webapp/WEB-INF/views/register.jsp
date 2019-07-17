@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@ font-family: Arial, Helvetica, sans-serif;
 input[type=text], input[type=password], input[type=number] {
   width: 100%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 0 10px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
@@ -75,32 +76,45 @@ button:hover {
 </head>
 <body>
 
-<form action="register" method="post" style="border:1px solid #ccc" onsubmit="return passwordCheck()">
+<form:form action="register" method="post" style="border:1px solid #ccc" onsubmit="return passwordCheck()" modelAttribute="employee">
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
     
-     <label for="email"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required>
+     <form:label for="name" path="name"><b>Name</b></form:label>
+    <form:input type="text" path="name" placeholder="Enter Name" />
+    <form:errors path="name" cssStyle="color: #ff0000;"/>
+    <br><br>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" id="pwd1" placeholder="Enter Password" name="password" required>
-
+    <form:label for="password" path="password"><b>Password</b></form:label>
+    <form:input type="password" path="password" id="pwd1" placeholder="Enter Password" name="password"  />
+    <form:errors path="password" cssStyle="color: #ff0000;" />
+    <br><br>
+    
     <label for="password-repeat"><b>Confirm Password</b></label>
-    <input type="password" id="pwd2" placeholder="Confirm Password" name="password-repeat" required>
+    <input type="password" id="pwd2" placeholder="Confirm Password" name="password-repeat"  />
+    <br><br>
     
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+    <form:label for="email" path="email"><b>Email</b></form:label>
+    <form:input path="email" type="text" placeholder="Enter Email" name="email" />
+    <form:errors path="email" cssStyle="color: #ff0000;" />
+    <br><br>
     
-    <label for="age"><b>Age</b></label>
-    <input type="number" placeholder="Enter Age" name="age" required>
+    <form:label path="age" for="age"><b>Age</b></form:label>
+    <form:input path="age" type="number" placeholder="Enter Age" name="age" />
+    <form:errors path="age" cssStyle="color: #ff0000;" />
+    <br><br>
     
-    <label for="salary"><b>Salary</b></label>
-    <input type="text" placeholder="Enter Salary" name="salary" required>
+    <form:label for="salary" path="salary"><b>Salary</b></form:label>
+    <form:input type="text" path="salary" placeholder="Enter Salary" name="salary" />
+    <form:errors path="salary" cssStyle="color: #ff0000;" />
+    <br><br>
     
-    <label for="role"><b>Role</b></label>
-    <input type="text" placeholder="Enter Role" name="role" required>
+    <form:label for="role" path="name"><b>Role</b></form:label>
+    <form:input type="text" path="role" placeholder="Enter Role" name="role" />
+    <form:errors path="role" cssStyle="color: #ff0000;" />
+    <br><br>
     
     <div class="clearfix">
       <button type="submit" class="signupbtn">SIGN UP</button>
@@ -110,7 +124,7 @@ button:hover {
         <a href="login"><button type="button" class="signupbtn">LOGIN</button></a>
     </div>
   </div>
-</form>
+</form:form>
 <script>
 	function passwordCheck(){
 		var pwd1 = document.getElementById("pwd1").value;
